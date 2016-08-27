@@ -1,0 +1,27 @@
+database:
+  driverClass: com.mysql.jdbc.Driver
+  user: root
+  password: password
+  url: jdbc:mysql://localhost/goodapp?useUnicode=true&characterEncoding=utf8
+  autoCommitByDefault: false
+  properties:
+    charSet: UTF-8
+  maxWaitForConnection: 1s
+  validationQuery: "/* MyService Health Check */ SELECT 1"
+  minSize: 8
+  maxSize: 32
+  checkConnectionWhileIdle: false
+  evictionInterval: 10s
+  minIdleTime: 1 minute
+
+mail:
+  host: smtp.gmail.com
+  port: 587
+  fromAddress: goodappserver@il-sus-web.net
+  subject: GoodappServerパスワード通知
+  content: ワンタイムパスワードは %2$s です
+# SMTPにGMAILを使用する場合、以下の設定を行う
+#  gmail:
+#    username: username
+#    password: password
+

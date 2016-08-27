@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <changeSet id="1" author="tamura.shingo">
+    <createTable tableName="m_user">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="user_id" type="varchar(5)">
+        <constraints nullable="false" />
+      </column>
+      <column name="name" type="varchar(20)">
+        <constraints nullable="false" />
+      </column>
+      <column name="email" type="varchar(255)">
+        <constraints nullable="false" />
+      </column>
+      <column name="pin" type="char(4)">
+        <constraints nullable="false" />
+      </column>
+      <column name="invalid_flag" type="char(1)">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <modifySql dbms="mysql">
+      <append value=" ENGINE=InnoDB DEFAULT CHARSET=UTF8"/>
+    </modifySql>
+  </changeSet>
+
+  <changeSet id="2" author="tamura.shingo">
+    <createIndex tableName="m_user"
+                 indexName="idx_user_id"
+                 unique="false">
+      <column name="user_id" />
+    </createIndex>
+  </changeSet>
+
+  <changeSet id="3" author="tamura.shingo">
+    <createTable tableName="t_otp">
+      <column name="otp_id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="user_id" type="varchar(5)">
+        <constraints nullable="false" />
+      </column>
+      <column name="otp" type="char(4)">
+        <constraints nullable="false" />
+      </column>
+      <column name="invalid_flag" type="char(1)">
+        <constraints nullable="false" />
+      </column>
+      <column name="error_count" type="int" defaultValueNumeric="0" />
+      <column name="create_date" type="datetime">
+        <constraints nullable="false" />
+      </column>
+      <column name="update_date" type="datetime">
+        <constraints nullable="false" />
+      </column>
+      <column name="error_date" type="datetime" />
+      <column name="login_date" type="datetime" />
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>
