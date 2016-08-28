@@ -45,6 +45,23 @@ public class BaseResponse implements java.io.Serializable {
      */
     protected String message;
     /**
+     * セッション情報。
+     * ユーザIDおよびそのセッションの有効期限が含まれるJsonWebTokenの形式。
+     */
+    protected String session;
+    /**
+     * @return the session
+     */
+    public String getSession() {
+        return session;
+    }
+    /**
+     * @param session the session to set
+     */
+    public void setSession(String session) {
+        this.session = session;
+    }
+    /**
      * @return the result
      */
     public String getResult() {

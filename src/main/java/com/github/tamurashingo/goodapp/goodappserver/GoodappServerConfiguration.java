@@ -46,6 +46,10 @@ public class GoodappServerConfiguration extends Configuration {
     @Valid
     @NotNull
     private MailProperties mailProperties;
+    
+    @Valid
+    @NotNull
+    private SessionProperties sessionProperties;
 
     @JsonProperty("database")
     public DataSourceFactory getDataSourceFactory() {
@@ -67,6 +71,15 @@ public class GoodappServerConfiguration extends Configuration {
         this.mailProperties = mailProperties;
     }
 
+    @JsonProperty("session")
+    public SessionProperties getSessionProperties() {
+        return this.sessionProperties;
+    }
+
+    @JsonProperty("session")
+    public void setSessionProperties(SessionProperties sessionProperties) {
+        this.sessionProperties = sessionProperties;
+    }
 
     /**
      * メール送信用の情報
@@ -202,6 +215,44 @@ public class GoodappServerConfiguration extends Configuration {
          */
         public void setGmail(GmailProperties gmail) {
             this.gmail = gmail;
+        }
+    }
+
+    /**
+     * セッション用の情報
+     *
+     * @author tamura shingo (tamura.shingo at gmail.com)
+     */
+    public static class SessionProperties implements java.io.Serializable {
+        /** serialVersionUID */
+        private static final long serialVersionUID = 1L;
+        /** 暗号化に使用するパスワード */
+        private String password;
+        /** セッションタイムアウト時間(分) */
+        private Long timeout;
+        /**
+         * @return the password
+         */
+        public String getPassword() {
+            return password;
+        }
+        /**
+         * @param password the password to set
+         */
+        public void setPassword(String password) {
+            this.password = password;
+        }
+        /**
+         * @return the timeout
+         */
+        public Long getTimeout() {
+            return timeout;
+        }
+        /**
+         * @param timeout the timeout to set
+         */
+        public void setTimeout(Long timeout) {
+            this.timeout = timeout;
         }
     }
 }
