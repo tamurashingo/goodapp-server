@@ -39,6 +39,7 @@ import com.github.tamurashingo.goodapp.goodappserver.repository.OnetimePasswordD
 import com.github.tamurashingo.goodapp.goodappserver.response.OnetimePasswordResponse.CheckOnetimePassword;
 import com.github.tamurashingo.goodapp.goodappserver.response.OnetimePasswordResponse.GenerateOnetimePassword;
 import com.github.tamurashingo.goodapp.goodappserver.service.OnetimePassswordService;
+import com.github.tamurashingo.goodapp.goodappserver.session.SessionUtil;
 import com.google.common.base.Optional;
 import com.google.inject.Inject;
 
@@ -117,6 +118,7 @@ public class OnetimePasswordServiceImpl implements OnetimePassswordService {
                         LOGGER.warn("LOGIN OK user={}", userId);
                         dao.login(userId);
                         response.setResult(GoodappServerConstants.Response.SUCCESS);
+                        response.setSession(SessionUtil.getSession(userId));
                         response.setMessage("ログインしました");
                     }
                     else {

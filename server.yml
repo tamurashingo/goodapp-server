@@ -25,3 +25,7 @@ mail:
 #    username: username
 #    password: password
 
+
+session:
+  password: ThisIsServerPasswordForGoodappServer
+  expire: 30

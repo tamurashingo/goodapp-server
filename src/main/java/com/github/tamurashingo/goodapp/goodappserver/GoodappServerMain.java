@@ -30,6 +30,7 @@ import com.github.tamurashingo.goodapp.goodappserver.repository.GoodappRepositor
 import com.github.tamurashingo.goodapp.goodappserver.resource.OnetimePasswordResource;
 import com.github.tamurashingo.goodapp.goodappserver.service.OnetimePassswordService;
 import com.github.tamurashingo.goodapp.goodappserver.service.impl.OnetimePasswordServiceImpl;
+import com.github.tamurashingo.goodapp.goodappserver.session.SessionUtil;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -70,6 +71,7 @@ public class GoodappServerMain extends Application<GoodappServerConfiguration> {
         final GoodappRepository repository = jdbi.onDemand(GoodappRepository.class);
 
         MailUtil.init(configuration.getMailProperties());
+        SessionUtil.init(configuration.getSessionProperties());
 
         Injector injector = createInjector(repository);
         environment.jersey().register(injector.getInstance(OnetimePasswordResource.class));
